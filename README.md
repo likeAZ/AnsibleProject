@@ -14,7 +14,7 @@ Mettre en place une authentification par clés sans mot de passe afin de facilit
 
 ## Déploiement 
 
-Afin de lancer le déploiement complet de l'infrastructure, on lancera le fichier `main.yml`
+Afin de lancer le déploiement complet de l'infrastructure, on lancera le fichier `playbooks/main.yml`
 
 Pour se faire, taper la commande `ansible-playbook -i hosts playbooks/main.yml -u root`
 
