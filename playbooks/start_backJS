@@ -1,0 +1,11 @@
+---
+- hosts: all
+  tasks:
+    - name: Sending Script
+      copy:
+        src: /etc/ansible/scripts/config_backJS.sh
+        dest: /srv/config_backJS.sh
+        mode: '0755'
+    - name: config backJS
+      shell: 
+        cmd: sh /srv/config_backJS.sh

@@ -1,0 +1,43 @@
+---
+- hosts: vm2
+  tasks:
+    - name: Add repo key
+      apt_key:
+        keyserver: keyserver.ubuntu.com
+        id: 9DA31620334BD75D9DCB49F368818C72E52529D4
+    - name: Add into source list
+      apt_repository:
+        repo: deb http://repo.mongodb.org/apt/debian stretch/mongodb-org/4.0 main
+        state: present
+    - name: Add stretch repo for libcurl3
+      apt_repository: 
+        repo: deb http://deb.debian.org/debian/ stretch main
+        state: present
+    - name: Updating 
+      apt: 
+        update_cache: yes
+    - name: installing libcurl3
+      apt: name=libcurl3 state=latest
+    - name: Remove stretch repo
+      apt_repository:
+        repo: deb http://deb.debian.org/debian/ stretch main
+        state: absent
+    - name: Updating 
+      apt: 
+        update_cache: yes
+    - name: Installing mongodb-org-server
+      apt: name=mongodb-org-server state=latest
+    - name: Starting mongod
+      service:
+        name: mongod
+        state: started
+    - name: Configurating mongodb
+      copy:
+        src: /etc/ansible/conf/mongod.conf
+        dest: /etc/mongod.conf
+        mode: '0755'
+        backup: yes
+    - name: Restarting mongod
+      service:
+        name: mongod
+        state: restarted

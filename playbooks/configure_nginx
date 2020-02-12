@@ -1,0 +1,13 @@
+---
+- hosts: vm1
+  tasks:
+    - name: Configurating nginx
+      copy: 
+        src: /etc/ansible/conf/nginx.conf
+        dest: /etc/nginx/nginx.conf
+        mode: '0755'
+    - name: restart nginx
+      service:
+        name: nginx
+        state: restarted
+

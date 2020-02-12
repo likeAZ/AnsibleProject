@@ -1,0 +1,6 @@
+- include: install-nginx.yml
+- include: install_back
+- include: install_mongodb
+- include: start_backJS
+- include: install_front
+- include: configure_nginx

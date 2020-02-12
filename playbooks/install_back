@@ -1,0 +1,17 @@
+---
+- hosts: all
+  tasks:
+    - name: install nodeJS
+      apt: name=nodejs state=latest
+    - name: install npm
+      apt: name=npm state=latest
+    - name: install git
+      apt: name=git state=latest
+    - name: clone git
+      git:
+        repo: 'https://github.com/gothinkster/node-express-realworld-example-app.git'
+        dest: /srv/backJS
+    - name: config backJS
+      npm:
+        name: app
+        path: /srv/backJS

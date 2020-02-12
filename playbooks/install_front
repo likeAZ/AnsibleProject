@@ -1,0 +1,15 @@
+---
+- hosts: vm1
+  tasks:
+    - name: clone git
+      git:
+        repo: 'https://github.com/gothinkster/react-redux-realworld-example-app.git'
+        dest: /srv/frontJS
+    - name: Sending Script
+      copy:
+        src: /etc/ansible/scripts/config_frontJS.sh
+        dest: /srv/config_frontJS.sh
+        mode: '0755'
+    - name: config frontJS
+      shell: 
+        cmd: sh /srv/config_frontJS.sh
